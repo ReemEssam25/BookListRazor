@@ -27,7 +27,7 @@ namespace BookListRazor.Pages.BookList
         public async Task<IActionResult> OnPostDelete(int id)
         {
             var book = await _db.Book.FindAsync(id);
-            if (book == null)
+            if (book == null) 
             {
                 return NotFound();
             }
