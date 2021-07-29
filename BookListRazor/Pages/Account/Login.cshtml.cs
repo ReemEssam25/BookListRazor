@@ -44,6 +44,7 @@ namespace BookListRazor.Pages.Account
                     new Claim(ClaimTypes.Email, c.mail)
                 };
 
+                //Nice try
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
