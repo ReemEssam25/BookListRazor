@@ -33,12 +33,12 @@ namespace BookListRazor.Controllers
             
             if (bookFromDb==null)
             {
-                return Json(new { success = false, message = "Error While Deleting" });
+                return NotFound();
             }
 
             _db.Book.Remove(bookFromDb);
             await _db.SaveChangesAsync();
-            return Json(new { success = true, message = "Delete Successful" });
+            return Ok();
         }
     }
 }
