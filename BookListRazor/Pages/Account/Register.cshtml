@@ -15,8 +15,9 @@
 
             <div class="col-5">
                 <input type="text" asp-for="Credential.UserName" class="form-control" />
+                <span class="text-danger" asp-validation-for="Credential.UserName"></span>
             </div>
-            <span class="text-danger" asp-validation-summary="Credential.UserName"></span>
+            
         </div>
 
         <div class="form-group row">
@@ -26,7 +27,7 @@
 
             <div class="col-5">
                 <input type="email" asp-for="Credential.mail" class="form-control" />
-                <span class="text-danger" asp-validation-summary="Credential.mail"></span>
+                <span class="text-danger" asp-validation-for="Credential.mail"></span>
             </div>
         </div>
 
@@ -37,7 +38,7 @@
 
             <div class="col-5">
                 <input type="password" asp-for="Credential.Password" class="form-control" />
-                <span class="text-danger" asp-validation-summary="Credential.Password"></span>
+                <span class="text-danger" asp-validation-for="Credential.Password"></span>
             </div>
         </div>
 
