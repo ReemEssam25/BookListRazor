@@ -28,12 +28,18 @@ namespace BookListRazor.Pages.Account
 
         public async Task<IActionResult> OnPost()
         {
-            var user = _db.Credentials.FirstOrDefault(o => o.UserName == Credential.UserName);
+            var c = _db.Credentials.FirstOrDefault(o => o.UserName == Credential.UserName);
 
-            if (ModelState.IsValid && user== null)
+   
+            if (ModelState.IsValid && c== null)
             {
 
+                User user =  new Model.User();
+                user.UserName = Credential.UserName;
+                user.Password = Credential.Password;
+
                 await _db.Credentials.AddAsync(Credential);
+                await _db.User.AddAsync(user);
                 await _db.SaveChangesAsync();
 
                 var claims = new List<Claim>

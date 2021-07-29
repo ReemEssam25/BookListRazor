@@ -21,23 +21,27 @@ namespace BookListRazor.Pages.Account
         }
 
         [BindProperty]
-        public Credential credential { get; set; }
+        public new User User{ get; set; }
         public void OnGet()
         {
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            var user = _db.Credentials.FirstOrDefault(o => o.UserName == credential.UserName && o.Password == credential.Password);
+            var user = _db.User.FirstOrDefault(o => o.UserName == User.UserName && o.Password == User.Password);
+            var c = _db.Credentials.FirstOrDefault(o => o.UserName == User.UserName && o.Password == User.Password);
 
             if (user != null)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, credential.UserName),
-                    new Claim(ClaimTypes.Email, credential.mail)
+                    new Claim(ClaimTypes.Name, c.UserName),
+                    new Claim(ClaimTypes.Email, c.mail)
                 };
 
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
